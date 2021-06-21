@@ -1,6 +1,10 @@
 package com.japarejo.personaltaste.model.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class User implements Serializable{
 	
@@ -9,6 +13,12 @@ public class User implements Serializable{
 	private String username;
 	private String password;
 	private String email;
+	
+	Set<Artwork> favoritos;
+	
+	public User() {
+		this.favoritos=new HashSet();
+	}
 	
 	public String getUsername() {
 		return username;
@@ -29,6 +39,14 @@ public class User implements Serializable{
 	
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public Set<Artwork> getFavoritos() {
+		return favoritos;
+	}
+	
+	public void setFavoritos(Set<Artwork> favoritos) {
+		this.favoritos = favoritos;
 	}
 	
 	@Override

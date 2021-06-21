@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
+import com.japarejo.personaltaste.model.entities.Artwork;
+import com.japarejo.personaltaste.model.entities.ArtworkType;
 import com.japarejo.personaltaste.model.entities.User;
 
 
@@ -30,6 +32,15 @@ public class UserRepository implements Serializable {
 		japarejo.setUsername("japarejo");
 		japarejo.setPassword("super-secret");
 		addUser(japarejo);
+		
+		ArtworkType VGtype=new ArtworkType();
+		VGtype.setName("Video Game");
+		Artwork botw=new Artwork();
+		botw.setName("Zelda Breath of the Wild");
+		botw.setType(VGtype);
+		botw.setYear(2017);
+		botw.setSponsor("Nintendo");
+		
 	}
 	
 	public boolean addUser(User user) {
