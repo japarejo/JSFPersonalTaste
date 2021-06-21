@@ -9,6 +9,15 @@
 <title>Personal Taste Login</title>
 </head>
 <body>
-	YOUR LOGIN FORM HERE!
+	<h:form id="mainForm">
+		<h:panelGrid columns="2">
+			<h:outputText value="Login:"/> 
+			<h:inputText value="#{LoginController.formUserName}"/>  
+			<h:outputText value="Password:"/> 
+			<h:inputText value="#{LoginController.formPassword}"/>
+			<h:commandButton action="#{LoginController.doLogin}" value="Login"></h:commandButton>
+			<h:messages></h:messages>
+		</h:panelGrid>
+	</h:form>
 </body>
 </html>

@@ -5,8 +5,14 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+
 import com.japarejo.personaltaste.model.entities.User;
 
+
+@ManagedBean(name="userRepository")
+@ApplicationScoped
 public class UserRepository implements Serializable {
 	Map<String,User> users;
 
@@ -37,6 +43,10 @@ public class UserRepository implements Serializable {
 
 	public boolean existsUser(String username) {
 		return users.containsKey(username);
+	}
+
+	public User findUser(String formUserName) {
+		return users.get(formUserName);
 	}
 	
 	

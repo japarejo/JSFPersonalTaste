@@ -9,9 +9,11 @@
 </head>
 <body>
 	<h:form id="generalForm">
-		<h:panelGrid columns="2">
-			<h:commandLink action="login">Login</h:commandLink>
+		<h:outputText value="#{LoginController.currentUser.username}"></h:outputText>
+		<h:panelGrid columns="2" style="float:right;">			
+			<h:commandLink action="login" rendered="#{LoginController.currentUser==null}">Login</h:commandLink>
 			<h:commandLink action="signup">Sign Up</h:commandLink>
+			<h:commandLink action="#{LoginController.doLogout}" rendered="#{LoginController.currentUser!=null}">Logout</h:commandLink>			
 		</h:panelGrid>
 	</h:form>
 </body>
