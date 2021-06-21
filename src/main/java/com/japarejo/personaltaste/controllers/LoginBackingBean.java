@@ -60,6 +60,7 @@ public class LoginBackingBean {
 			User user=userRepository.findUser(formUserName);
 			if(user!=null && user.getPassword().contentEquals(formPassword)) {
 				currentUser=user;
+				clear();
 			}else {				
 				FacesMessage msg=new FacesMessage("Password Invalid");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -76,5 +77,10 @@ public class LoginBackingBean {
 	public String doLogout() {
 		this.currentUser=null;
 		return "index";
+	}
+	
+	private void clear() {
+		formPassword="";
+		formUserName="";
 	}
 }
