@@ -57,7 +57,7 @@ public class LoginBackingBean {
 	
 	
 	public String doLogin() {
-		String result="index";
+		String result="favourites";
 		if(userRepository.existsUser(formUserName))
 		{
 			User user=userRepository.findUser(formUserName);
