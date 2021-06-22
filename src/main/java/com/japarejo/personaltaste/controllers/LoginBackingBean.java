@@ -17,6 +17,7 @@ public class LoginBackingBean {
 	String formUserName;
 	String formPassword;
 	
+	
 	@ManagedProperty(value="#{userRepository}")
 	UserRepository userRepository;
 	
@@ -53,6 +54,8 @@ public class LoginBackingBean {
 	}
 	
 	
+	
+	
 	public String doLogin() {
 		String result="index";
 		if(userRepository.existsUser(formUserName))
@@ -82,5 +85,6 @@ public class LoginBackingBean {
 	private void clear() {
 		formPassword="";
 		formUserName="";
-	}
+	}	
+	
 }

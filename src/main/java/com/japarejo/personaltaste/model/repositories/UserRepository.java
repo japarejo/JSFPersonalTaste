@@ -41,6 +41,17 @@ public class UserRepository implements Serializable {
 		botw.setYear(2017);
 		botw.setSponsor("Nintendo");
 		
+		ArtworkType filmType=new ArtworkType();
+		filmType.setName("Film");
+		Artwork br=new Artwork();
+		br.setName("Blade Runner");
+		br.setType(filmType);
+		br.setYear(1982);
+		br.setSponsor("Warner Bros");
+		
+		japarejo.getFavoritos().add(botw);
+		japarejo.getFavoritos().add(br);
+		
 	}
 	
 	public boolean addUser(User user) {

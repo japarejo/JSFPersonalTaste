@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
 import com.japarejo.personaltaste.model.entities.Artwork;
+import com.japarejo.personaltaste.model.entities.ArtworkType;
 
 @ManagedBean(name="userRepository")
 @ApplicationScoped
@@ -51,6 +52,16 @@ public class FavouritesRepository {
 	
 	public void setUserRepository(UserRepository userRepository) {
 		this.userRepository = userRepository;
+	}
+	
+	public List<ArtworkType> findAllArtworkTypes(){
+		return this.userRepository.findAllUsers().stream()
+						.map(u -> u.getFavoritos())
+						.flatMap(Collection::stream)
+						.map(a -> a.getType())
+						.distinct()
+						.collect(Collectors.toList());
+						
 	}
 	
 }
