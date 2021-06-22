@@ -27,7 +27,8 @@
 			#{work.sponsor}    
 		</h:column>
 	</h:dataTable>
-	<h:outputText rendered="#{LoginController.currentUser==null}" value="You must be logged in to show your favourites!"/>
+	<h:commandLink action="#{FavouritesController.create}" value="Add favourite" rendered="#{LoginController.currentUser!=null}"></h:commandLink>
+	<h:outputText rendered="#{LoginController.currentUser==null}" value="You must be logged in to show your favourites!"/>	
 	</h:form>
 	
 </body>

@@ -12,7 +12,7 @@ import javax.faces.bean.ManagedProperty;
 import com.japarejo.personaltaste.model.entities.Artwork;
 import com.japarejo.personaltaste.model.entities.ArtworkType;
 
-@ManagedBean(name="userRepository")
+@ManagedBean(name="favouritesRepository")
 @ApplicationScoped
 public class FavouritesRepository {
 	
@@ -62,6 +62,10 @@ public class FavouritesRepository {
 						.distinct()
 						.collect(Collectors.toList());
 						
+	}
+	
+	public List<ArtworkType> getArtworkTypes(){
+		return findAllArtworkTypes();
 	}
 	
 }
