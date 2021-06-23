@@ -2,35 +2,42 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Favourites creation/update</title>
 </head>
 <body>
-	<h:form id="EditArtwork">
-		<h:panelGrid columns="3" render="#{FavouritesController.currentArtwork!=null}">		
-			<h:outputText value="Name:"></h:outputText>
-			<h:inputText id="name" name="name" value="#{FavouritesController.currentArtwork.name}" required="true">				
-			</h:inputText>
-			<h:message for="name" style="color:red;"/>
-			
-			<h:outputText value="Year:"></h:outputText>
-			<h:inputText id="year" name="year" value="#{FavouritesController.currentArtwork.year}" required="true">
-				<f:validateLongRange minimum="1"></f:validateLongRange>
-			</h:inputText>
-			<h:message for="year" style="color:red;"/>
-			
-			<h:outputText value="Type:"></h:outputText>
-			<h:selectOneMenu id="type" name="type" value="#{FavouritesController.currentArtwork.type}" required="true">
-				<f:converter converterId="ArtworkTypeConverter"></f:converter>
-				<f:selectItem itemValue="#{null}" noSelectionOption="true" />
-				<f:selectItems value="#{favouritesRepository.artworkTypes}" var="a" itemLabel="#{a.name}" itemValue="#{a}"></f:selectItems>								
-			</h:selectOneMenu>							
-			<h:message for="type" style="color:red;"/>
-			
-			<h:commandButton value="save" action="#{FavouritesController.save}"/>
-		</h:panelGrid>
-	</h:form>
+	<ui:composition template="templates/generaltemplate.xhtml">
+		<ui:define name="pageContent">
+			<h:panelGrid columns="3"
+				render="#{FavouritesController.currentArtwork!=null}">
+				<h:outputText value="Name:"></h:outputText>
+				<h:inputText id="name" name="name"
+					value="#{FavouritesController.currentArtwork.name}" required="true">
+				</h:inputText>
+				<h:message for="name" style="color:red;" />
+
+				<h:outputText value="Year:"></h:outputText>
+				<h:inputText id="year" name="year"
+					value="#{FavouritesController.currentArtwork.year}" required="true">
+				</h:inputText>
+				<h:message for="year" style="color:red;" />
+
+				<h:outputText value="Type:"></h:outputText>
+				<h:selectOneMenu id="type" name="type"
+					value="#{FavouritesController.currentArtwork.type}" required="true">
+					<f:converter converterId="ArtworkTypeConverter"></f:converter>
+					<f:selectItem itemValue="#{null}" noSelectionOption="true" />
+					<f:selectItems value="#{favouritesRepository.artworkTypes}" var="a"
+						itemLabel="#{a.name}" itemValue="#{a}"></f:selectItems>
+				</h:selectOneMenu>
+				<h:message for="type" style="color:red;" />
+
+				<h:commandButton value="save" action="#{FavouritesController.save}" />
+			</h:panelGrid>
+		</ui:define>
+	</ui:composition>
 </body>
 </html>

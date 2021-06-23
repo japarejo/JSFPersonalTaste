@@ -1,43 +1,52 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Sign Up!</title>
 </head>
 <body>
-	<h:form id="formularioSignUp">
-		<h:panelGrid columns="3">
-			<h:outputText value="Username:"/>
-			<h:inputText name="username" id="username" value="#{SignUpController.formUsername}">
-				<f:validateLength minimum="4"></f:validateLength>
-			</h:inputText>
-			<h:message for="username"></h:message>
-			
-			<h:outputText value="Password:"/>
-			<h:inputText name="password" id="password" value="#{SignUpController.formPassword}">
-				<f:validator validatorId="passwordStrengthValidator"/>
-			</h:inputText>
-			<h:message for="password"></h:message>
-			
-			<h:outputText value="RepeatPassword:"/> 
-			<h:inputText name="passwordRepeat" id="passwordRepeat" 
+	<ui:composition template="templates/generaltemplate.xhtml">
+		<ui:define name="pageContent">
+			<h:panelGrid columns="3">
+				<h:outputText value="Username:" />
+				<h:inputText name="username" id="username"
+					value="#{SignUpController.formUsername}">
+					<f:validateLength minimum="4"></f:validateLength>
+				</h:inputText>
+				<h:message for="username"></h:message>
+
+				<h:outputText value="Password:" />
+				<h:inputText name="password" id="password"
+					value="#{SignUpController.formPassword}">
+					<f:validator validatorId="passwordStrengthValidator" />
+				</h:inputText>
+				<h:message for="password"></h:message>
+
+				<h:outputText value="RepeatPassword:" />
+				<h:inputText name="passwordRepeat" id="passwordRepeat"
 					value="#{SignUpController.formPasswordRepeat}">
-			</h:inputText>
-			<h:message for="passwordRepeat"></h:message>
-			
-			
-			<h:outputText value="Email:"/>
-			<h:inputText id="email" name="email" value="#{SignUpController.formEmail}" required="true" validatorMessage="#{SignUpController.formEmail} is not a valid e-mail">
-				<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"></f:validateRegex>
-			</h:inputText>
-			<h:message for="email"></h:message>
-			
-			
-			<h:commandButton action="#{SignUpController.doSave}" value="Save"/> <h:messages globalOnly="true"/>
-		</h:panelGrid>
-	</h:form>
+				</h:inputText>
+				<h:message for="passwordRepeat"></h:message>
+
+
+				<h:outputText value="Email:" />
+				<h:inputText id="email" name="email"
+					value="#{SignUpController.formEmail}" required="true"
+					validatorMessage="#{SignUpController.formEmail} is not a valid e-mail">
+					<f:validateRegex
+						pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"></f:validateRegex>
+				</h:inputText>
+				<h:message for="email"></h:message>
+
+
+				<h:commandButton action="#{SignUpController.doSave}" value="Save" />
+				<h:messages globalOnly="true" />
+			</h:panelGrid>
+		</ui:define>
+	</ui:composition>
 </body>
 </html>

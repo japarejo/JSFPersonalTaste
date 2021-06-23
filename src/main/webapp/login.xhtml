@@ -2,22 +2,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Personal Taste Login</title>
 </head>
 <body>
-	<h:form id="mainForm">
-		<h:panelGrid columns="2">
-			<h:outputText value="Login:"/> 
-			<h:inputText value="#{LoginController.formUserName}"/>  
-			<h:outputText value="Password:"/> 
-			<h:inputText value="#{LoginController.formPassword}"/>
-			<h:commandButton action="#{LoginController.doLogin}" value="Login"></h:commandButton>
-			<h:messages></h:messages>
-		</h:panelGrid>
-	</h:form>
+	<ui:composition template="templates/generaltemplate.xhtml">
+		<ui:define name="pageContent">
+			<h:panelGrid columns="2">
+				<h:outputText value="Login:" />
+				<h:inputText value="#{LoginController.formUserName}" />
+				<h:outputText value="Password:" />
+				<h:inputText value="#{LoginController.formPassword}" />
+				<h:commandButton action="#{LoginController.doLogin}" value="Login"></h:commandButton>
+				<h:messages></h:messages>
+			</h:panelGrid>
+		</ui:define>
+	</ui:composition>
 </body>
 </html>

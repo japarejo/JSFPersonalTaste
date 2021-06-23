@@ -2,34 +2,42 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Favourites</title>
 </head>
 <body>
-	<h:form>
-	<h:dataTable var="work" rendered="#{LoginController.currentUser!=null}" value="#{LoginController.currentUser.favoritos}">
-		<h:column>
-			<f:facet name = "header">Name</f:facet>
+	<ui:composition template="templates/generaltemplate.xhtml">
+		<ui:define name="pageContent">
+			<h:dataTable var="work"
+				rendered="#{LoginController.currentUser!=null}"
+				value="#{LoginController.currentUser.favoritos}">
+				<h:column>
+					<f:facet name="header">Name</f:facet>
 			#{work.name}    
 		</h:column>
-		<h:column>
-			<f:facet name = "header">Type</f:facet>
+				<h:column>
+					<f:facet name="header">Type</f:facet>
 			#{work.type.name}    
 		</h:column>
-		<h:column>
-			<f:facet name = "header">Year</f:facet>
+				<h:column>
+					<f:facet name="header">Year</f:facet>
 			#{work.year}    
 		</h:column>
-		<h:column>
-			<f:facet name = "header">Sponsor</f:facet>
+				<h:column>
+					<f:facet name="header">Sponsor</f:facet>
 			#{work.sponsor}    
 		</h:column>
-	</h:dataTable>
-	<h:commandLink action="#{FavouritesController.create}" value="Add favourite" rendered="#{LoginController.currentUser!=null}"></h:commandLink>
-	<h:outputText rendered="#{LoginController.currentUser==null}" value="You must be logged in to show your favourites!"/>	
-	</h:form>
-	
+			</h:dataTable>
+			<h:commandLink action="#{FavouritesController.create}"
+				value="Add favourite"
+				rendered="#{LoginController.currentUser!=null}"></h:commandLink>
+			<h:outputText rendered="#{LoginController.currentUser==null}"
+				value="You must be logged in to show your favourites!" />
+		</ui:define>
+	</ui:composition>
+
 </body>
 </html>
