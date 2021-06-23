@@ -6,16 +6,19 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.context.annotation.SessionScope;
+
 import com.japarejo.personaltaste.model.entities.Artwork;
 import com.japarejo.personaltaste.model.repositories.FavouritesRepository;
 
-
-@ManagedBean(name="FavouritesController")
-@SessionScoped
+@Controller("FavouritesController")
+@SessionScope
 public class FavouritesBackingBean implements Serializable{
 	Artwork currentArtwork;
 	
-	@ManagedProperty(value="#{favouritesRepository}")
+	@Autowired
 	FavouritesRepository repo;
 	
 	@ManagedProperty(value="#{LoginController}")

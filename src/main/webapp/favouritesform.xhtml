@@ -28,7 +28,7 @@
 				<h:outputText value="#{txt['artwork.type']}:"></h:outputText>
 				<h:selectOneMenu id="type" name="type"
 					value="#{FavouritesController.currentArtwork.type}" required="true">
-					<f:converter converterId="ArtworkTypeConverter"></f:converter>
+					<f:converter ></f:converter>
 					<f:selectItem itemValue="#{null}" noSelectionOption="true" />
 					<f:selectItems value="#{favouritesRepository.artworkTypes}" var="a"
 						itemLabel="#{a.name}" itemValue="#{a}"></f:selectItems>

@@ -1,18 +1,20 @@
 package com.japarejo.personaltaste.model.converter;
 
-import javax.faces.bean.ManagedProperty;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.japarejo.personaltaste.model.entities.ArtworkType;
 import com.japarejo.personaltaste.model.repositories.FavouritesRepository;
 
-@FacesConverter("ArtworkTypeConverter")
+@Service("ArtworkTypeConverter")
+//@FacesConverter("ArtworkTypeConverter")
 public class ArtworkTypeConverter implements Converter {
 
-	@ManagedProperty(value="#{favouritesRepository}")
+	@Autowired
 	FavouritesRepository favRepo;
 	
 	@Override

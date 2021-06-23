@@ -1,24 +1,25 @@
 package com.japarejo.personaltaste.controllers;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import com.japarejo.personaltaste.model.entities.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.context.annotation.SessionScope;
+
+import com.japarejo.personaltaste.model.entities.Geek;
 import com.japarejo.personaltaste.model.repositories.UserRepository;
 
-@ManagedBean(name="LoginController")
-@SessionScoped
+@Controller("LoginController")
+@SessionScope
 public class LoginBackingBean {
-	User currentUser;
+	Geek currentUser;
 	
 	String formUserName;
 	String formPassword;
 	
 	
-	@ManagedProperty(value="#{userRepository}")
+	@Autowired
 	UserRepository userRepository;
 	
 	public String getFormUserName() {
@@ -37,11 +38,11 @@ public class LoginBackingBean {
 		this.formPassword = formPassword;
 	}
 
-	public User getCurrentUser() {
+	public Geek getCurrentUser() {
 		return currentUser;
 	}
 	
-	public void setCurrentUser(User currentUser) {
+	public void setCurrentUser(Geek currentUser) {
 		this.currentUser = currentUser;
 	}
 	
@@ -60,7 +61,7 @@ public class LoginBackingBean {
 		String result="favourites";
 		if(userRepository.existsUser(formUserName))
 		{
-			User user=userRepository.findUser(formUserName);
+			Geek user=userRepository.findUser(formUserName);
 			if(user!=null && user.getPassword().contentEquals(formPassword)) {
 				currentUser=user;
 				clear();

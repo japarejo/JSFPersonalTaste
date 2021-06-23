@@ -5,30 +5,30 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.ApplicationScope;
 
 import com.japarejo.personaltaste.model.entities.Artwork;
 import com.japarejo.personaltaste.model.entities.ArtworkType;
-import com.japarejo.personaltaste.model.entities.User;
+import com.japarejo.personaltaste.model.entities.Geek;
 
 
-@ManagedBean(name="userRepository")
-@ApplicationScoped
+@Service
+@ApplicationScope
 public class UserRepository implements Serializable {
-	Map<String,User> users;
+	Map<String,Geek> users; 
 
 	public UserRepository(){
-		users=new HashMap<String,User>();
+		users=new HashMap<String,Geek>();
 		init();
 	}
 	
-	public Collection<User> findAllUsers(){
+	public Collection<Geek> findAllUsers(){
 		return users.values();
 	}
 	
 	private void init() {
-		User japarejo=new User();
+		Geek japarejo=new Geek();
 		japarejo.setUsername("japarejo");
 		japarejo.setPassword("super-secret");
 		addUser(japarejo);
@@ -54,7 +54,7 @@ public class UserRepository implements Serializable {
 		
 	}
 	
-	public boolean addUser(User user) {
+	public boolean addUser(Geek user) {
 		boolean result=true;
 		if(!existsUser(user.getUsername()))
 			users.put(user.getUsername(),user);
@@ -67,7 +67,7 @@ public class UserRepository implements Serializable {
 		return users.containsKey(username);
 	}
 
-	public User findUser(String formUserName) {
+	public Geek findUser(String formUserName) {
 		return users.get(formUserName);
 	}
 	

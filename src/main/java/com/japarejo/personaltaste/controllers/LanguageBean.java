@@ -5,13 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.context.annotation.SessionScope;
 
-@ManagedBean(name="language")
-@SessionScoped
+
+@Controller(value="language")
+@SessionScope
 public class LanguageBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;	

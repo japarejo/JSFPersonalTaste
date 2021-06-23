@@ -5,18 +5,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.ApplicationScope;
 
 import com.japarejo.personaltaste.model.entities.Artwork;
 import com.japarejo.personaltaste.model.entities.ArtworkType;
 
-@ManagedBean(name="favouritesRepository")
-@ApplicationScoped
+@Service
+@ApplicationScope
 public class FavouritesRepository {
 	
-	@ManagedProperty(value="#{userRepository}")
+	@Autowired
 	UserRepository userRepository;
 	
 	

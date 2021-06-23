@@ -1,26 +1,27 @@
 package com.japarejo.personaltaste.controllers;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import com.japarejo.personaltaste.model.entities.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.context.annotation.SessionScope;
+
+import com.japarejo.personaltaste.model.entities.Geek;
 import com.japarejo.personaltaste.model.repositories.UserRepository;
 
-@ManagedBean(name = "SignUpController")
-@SessionScoped
+@Controller("SignUpController")
+@SessionScope
 public class SignUpBackingBean {
 	String formUsername;
 	String formEmail;
 	String formPassword;
 	String formPasswordRepeat;
 
-	@ManagedProperty(value = "#{userRepository}")
+	@Autowired
 	UserRepository userRepository;
 
-	@ManagedProperty(value = "#{LoginController}")
+	@Autowired
 	LoginBackingBean loginBackingBean;
 
 	public String getFormUsername() {
@@ -76,7 +77,7 @@ public class SignUpBackingBean {
 		if (formPassword.equals(formPasswordRepeat)) {
 
 			if (!userRepository.existsUser(formUsername)) {
-				User user = new User();
+				Geek user = new Geek();
 				user.setUsername(formUsername);
 				user.setPassword(formPassword);
 				user.setEmail(formEmail);
