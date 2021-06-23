@@ -6,25 +6,25 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>
-		<ui:insert name="Title">
+	<title><ui:insert name="Title">
 			Personal Taste
-		</ui:insert>
-	</title>
+		</ui:insert></title>
 	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 	<ui:insert name="additionalPageHeaders"></ui:insert>
-</h:head>	
+</h:head>
 <h:body>
-	<h:form id="generalForm">
-		<ui:insert name="pageHeader">
-			<ui:include src="defaultHeader.xhtml"></ui:include>
-		</ui:insert>
-		<div class="mainContent">
-			<ui:insert name="pageContent"></ui:insert>
-		</div>
-		<ui:insert name="pageFooter">
-			<ui:include src="defaultFooter.xhtml"></ui:include>
-		</ui:insert>
-	</h:form>
+	<f:view locale="#{language.locale}">
+		<h:form id="generalForm">
+			<ui:insert name="pageHeader">
+				<ui:include src="defaultHeader.xhtml"></ui:include>
+			</ui:insert>
+			<div class="mainContent">
+				<ui:insert name="pageContent"></ui:insert>
+			</div>
+			<ui:insert name="pageFooter">
+				<ui:include src="defaultFooter.xhtml"></ui:include>
+			</ui:insert>
+		</h:form>
+	</f:view>
 </h:body>
 </html>

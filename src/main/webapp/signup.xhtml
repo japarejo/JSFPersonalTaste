@@ -12,21 +12,21 @@
 	<ui:composition template="templates/generaltemplate.xhtml">
 		<ui:define name="pageContent">
 			<h:panelGrid columns="3">
-				<h:outputText value="Username:" />
+				<h:outputText value="#{txt['login.username']}:" />
 				<h:inputText name="username" id="username"
 					value="#{SignUpController.formUsername}">
 					<f:validateLength minimum="4"></f:validateLength>
 				</h:inputText>
 				<h:message for="username"></h:message>
 
-				<h:outputText value="Password:" />
+				<h:outputText value="#{txt['login.password']}:" />
 				<h:inputText name="password" id="password"
 					value="#{SignUpController.formPassword}">
 					<f:validator validatorId="passwordStrengthValidator" />
 				</h:inputText>
 				<h:message for="password"></h:message>
 
-				<h:outputText value="RepeatPassword:" />
+				<h:outputText value="#{txt['signup.repeatpassword']}:" />
 				<h:inputText name="passwordRepeat" id="passwordRepeat"
 					value="#{SignUpController.formPasswordRepeat}">
 				</h:inputText>
@@ -43,7 +43,7 @@
 				<h:message for="email"></h:message>
 
 
-				<h:commandButton action="#{SignUpController.doSave}" value="Save" />
+				<h:commandButton action="#{SignUpController.doSave}" value="#{txt['save']}" />
 				<h:messages globalOnly="true" />
 			</h:panelGrid>
 		</ui:define>

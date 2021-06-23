@@ -13,11 +13,11 @@
 	<ui:composition template="templates/generaltemplate.xhtml">
 		<ui:define name="pageContent">
 			<h:panelGrid columns="2">
-				<h:outputText value="Login:" />
+				<h:outputText value="#{txt['login.username']}:" />
 				<h:inputText value="#{LoginController.formUserName}" />
-				<h:outputText value="Password:" />
+				<h:outputText value="#{txt['login.password']}:" />
 				<h:inputText value="#{LoginController.formPassword}" />
-				<h:commandButton action="#{LoginController.doLogin}" value="Login"></h:commandButton>
+				<h:commandButton action="#{LoginController.doLogin}" value="#{txt['login.login']}"></h:commandButton>
 				<h:messages></h:messages>
 			</h:panelGrid>
 		</ui:define>

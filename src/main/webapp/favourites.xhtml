@@ -15,19 +15,19 @@
 				rendered="#{LoginController.currentUser!=null}"
 				value="#{LoginController.currentUser.favoritos}">
 				<h:column>
-					<f:facet name="header">Name</f:facet>
+					<f:facet name="header">#{txt['artwork.name']}</f:facet>
 			#{work.name}    
 		</h:column>
 				<h:column>
-					<f:facet name="header">Type</f:facet>
+					<f:facet name="header">#{txt['artwork.type']}</f:facet>
 			#{work.type.name}    
 		</h:column>
 				<h:column>
-					<f:facet name="header">Year</f:facet>
+					<f:facet name="header">#{txt['artwork.year']}</f:facet>
 			#{work.year}    
 		</h:column>
 				<h:column>
-					<f:facet name="header">Sponsor</f:facet>
+					<f:facet name="header">#{txt['artwork.sponsor']}</f:facet>
 			#{work.sponsor}    
 		</h:column>
 			</h:dataTable>
