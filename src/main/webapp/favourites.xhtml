@@ -32,7 +32,7 @@
 		</h:column>
 			</h:dataTable>
 			<h:commandLink action="#{FavouritesController.create}"
-				value="Add favourite"
+				value="#{txt['artwork.addFavourite']}"
 				rendered="#{LoginController.currentUser!=null}"></h:commandLink>
 			<h:outputText rendered="#{LoginController.currentUser==null}"
 				value="You must be logged in to show your favourites!" />

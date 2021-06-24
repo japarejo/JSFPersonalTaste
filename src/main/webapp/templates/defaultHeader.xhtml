@@ -16,9 +16,13 @@
 			<h:commandLink action="login" rendered="#{LoginController.currentUser==null}">#{txt.login}</h:commandLink>			
 			<h:commandLink action="#{LoginController.doLogout}" rendered="#{LoginController.currentUser!=null}">#{txt.logout}</h:commandLink>
 			<h:commandLink action="signup">#{txt.signup}</h:commandLink>
-			#{txt.language}:<h:selectOneMenu value="#{language.language}" onchange="submit();" immediate="true">
+			
+			
+			#{txt.language}:<h:selectOneMenu value="#{language.language}" onselect="submit();" immediate="true" >
 									<f:selectItems value="#{language.options}"/>
 							   </h:selectOneMenu>
+							   <h:commandButton value="es" action="#{language.change('es')}" immediate="true"></h:commandButton>
+							   <h:commandButton value="en" action="#{language.change('en')}" immediate="true"></h:commandButton>
 						
 		</h:panelGrid>			
 		</header>
