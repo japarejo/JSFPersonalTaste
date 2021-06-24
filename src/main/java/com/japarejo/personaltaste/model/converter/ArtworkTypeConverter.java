@@ -1,5 +1,6 @@
 package com.japarejo.personaltaste.model.converter;
 
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

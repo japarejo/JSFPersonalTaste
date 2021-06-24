@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Favourites creation/update</title>
@@ -26,13 +27,11 @@
 				<h:message for="year" style="color:red;" />
 
 				<h:outputText value="#{txt['artwork.type']}:"></h:outputText>
-				<h:selectOneMenu id="type" name="type"
-					value="#{FavouritesController.currentArtwork.type}" required="true">
-					<f:converter converterId="ArtworkTypeConverter"></f:converter>
-					<f:selectItem itemValue="#{null}" noSelectionOption="true" />
-					<f:selectItems value="#{favouritesRepository.artworkTypes}" var="a"
-						itemLabel="#{a.name}" itemValue="#{a}"></f:selectItems>
-				</h:selectOneMenu>
+				<p:autoComplete id="type" name="type"
+					value="#{FavouritesController.currentArtwork.type}" required="true"
+					completeMethod="#{FavouritesController.completeArtworkTypeName}" >
+					<f:converter converterId="ArtworkTypeConverter"></f:converter>					
+				</p:autoComplete>
 				<h:message for="type" style="color:red;" />
 
 				<h:commandButton value="#{txt['save']}" action="#{FavouritesController.save}" />

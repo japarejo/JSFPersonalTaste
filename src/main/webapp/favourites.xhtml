@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Favourites</title>
@@ -11,29 +12,66 @@
 <body>
 	<ui:composition template="templates/generaltemplate.xhtml">
 		<ui:define name="pageContent">
-			<h:dataTable var="work"
-				rendered="#{LoginController.currentUser!=null}"
-				value="#{LoginController.currentUser.favoritos}">
-				<h:column>
-					<f:facet name="header">#{txt['artwork.name']}</f:facet>
-			#{work.name}    
-		</h:column>
-				<h:column>
-					<f:facet name="header">#{txt['artwork.type']}</f:facet>
-			#{work.type.name}    
-		</h:column>
-				<h:column>
-					<f:facet name="header">#{txt['artwork.year']}</f:facet>
-			#{work.year}    
-		</h:column>
-				<h:column>
-					<f:facet name="header">#{txt['artwork.sponsor']}</f:facet>
-			#{work.sponsor}    
-		</h:column>
-			</h:dataTable>
+			<p:growl id="messages" showDetail="true" />
+			<p:panel header="Conjunto de Obras Favoritas">
+				<p:dataTable id="dt1"
+					value="#{LoginController.currentUser.favoritos}" var="work"
+					 editable="true" paginatorAlwaysVisible="true" rows="5"                      paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                     rowsPerPageTemplate="5,10,100"	>
+                     
+                     <p:ajax event="rowEdit" listener="#{FavouritesController.onRowEdit}" update=":generalForm:messages"/>
+            		 <p:ajax event="rowEditCancel" listener="#{FavouritesController.onRowCancel}" update=":generalForm:messages"/>
+                     
+					<f:facet name="header">Mis Favoritos</f:facet>					
+						<p:column>
+							<f:facet name="header">#{txt['artwork.name']}</f:facet>							   
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{work.name}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{work.name}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column>
+							<f:facet name="header">#{txt['artwork.year']}</f:facet>							   
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{work.year}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{work.year}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column>
+							<f:facet name="header">#{txt['artwork.sponsor']}</f:facet>							   
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{work.sponsor}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{work.sponsor}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column>
+							<f:facet name="header">#{txt['artwork.type']}</f:facet>
+							#{work.type.name}    
+						</p:column>
+						<p:column style="width:6rem">
+                			<p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                			<p:commandButton action="#{FavouritesController.delete(work.name)}" update="@form" class="pi ui-icon pi-trash">                				
+                			</p:commandButton>
+            			</p:column>	
+					</p:dataTable>
+			</p:panel>
 			<h:commandLink action="#{FavouritesController.create}"
 				value="#{txt['artwork.addFavourite']}"
-				rendered="#{LoginController.currentUser!=null}"></h:commandLink>
+				rendered="#{LoginController.currentUser!=null}"></h:commandLink>			
 			<h:outputText rendered="#{LoginController.currentUser==null}"
 				value="You must be logged in to show your favourites!" />
 		</ui:define>
