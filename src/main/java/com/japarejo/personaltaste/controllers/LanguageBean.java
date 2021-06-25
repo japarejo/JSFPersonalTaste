@@ -12,10 +12,8 @@ import javax.faces.context.FacesContext;
 
 @ManagedBean(name="language")
 @SessionScoped
-public class LanguageBean implements Serializable{
-	
-	private static final long serialVersionUID = 1L;	
-	
+public class LanguageBean implements Serializable{				
+
 	private Locale locale;
 	
 	String language;
@@ -65,4 +63,46 @@ public class LanguageBean implements Serializable{
         locale = new Locale(language);
         FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(language));
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((language == null) ? 0 : language.hashCode());
+		result = prime * result + ((locale == null) ? 0 : locale.hashCode());
+		result = prime * result + ((options == null) ? 0 : options.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LanguageBean other = (LanguageBean) obj;
+		if (language == null) {
+			if (other.language != null)
+				return false;
+		} else if (!language.equals(other.language))
+			return false;
+		if (locale == null) {
+			if (other.locale != null)
+				return false;
+		} else if (!locale.equals(other.locale))
+			return false;
+		if (options == null) {
+			if (other.options != null)
+				return false;
+		} else if (!options.equals(other.options))
+			return false;
+		return true;
+	}
+    
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7040201021521783992L;
 }

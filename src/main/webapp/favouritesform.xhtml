@@ -15,9 +15,11 @@
 			<h:panelGrid columns="3"
 				render="#{FavouritesController.currentArtwork!=null}">
 				<h:outputText value="#{txt['artwork.name']}:"></h:outputText>
-				<h:inputText id="name" name="name"
-					value="#{FavouritesController.currentArtwork.name}" required="true">
-				</h:inputText>
+				<p:autoComplete id="name" name="name"
+					value="#{FavouritesController.currentArtwork.name}" required="true"
+					completeMethod="#{FavouritesController.completeAllArtworksName}">
+					  <p:ajax event="itemSelect" listener="#{FavouritesController.autocompleteFromTitle}" update="@form" />									
+				</p:autoComplete>
 				<h:message for="name" style="color:red;" />
 
 				<h:outputText value="#{txt['artwork.year']}:"></h:outputText>
