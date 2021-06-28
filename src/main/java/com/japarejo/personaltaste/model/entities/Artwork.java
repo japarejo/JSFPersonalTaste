@@ -10,6 +10,14 @@ public class Artwork implements Serializable{
 	String sponsor;
 	ArtworkType type;
 	
+	public Artwork() {}
+	public Artwork(Artwork a) {
+		this.name=a.name;
+		this.year=new Integer(a.year.intValue());
+		this.sponsor=a.sponsor;
+		this.type=a.type;
+	}
+	
 	public String getName() {
 		return name;
 	}

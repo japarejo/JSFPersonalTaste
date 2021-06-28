@@ -1,5 +1,6 @@
 package com.japarejo.personaltaste.model.repositories;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -55,17 +56,73 @@ public class FavouritesRepository {
 	}
 	
 	public List<ArtworkType> findAllArtworkTypes(){
-		return this.userRepository.findAllUsers().stream()
-						.map(u -> u.getFavoritos())
-						.flatMap(Collection::stream)
+		return findAllArtworks().stream()
 						.map(a -> a.getType())
 						.distinct()
 						.collect(Collectors.toList());
 						
 	}
 	
+	public List<Artwork> findAllArtworks(){
+		return this.userRepository.findAllUsers().stream()
+				.map(u -> u.getFavoritos())
+				.flatMap(Collection::stream)				
+				.distinct()
+				.collect(Collectors.toList());
+	}
+	
 	public List<ArtworkType> getArtworkTypes(){
 		return findAllArtworkTypes();
 	}
+	
+	public Artwork findArtworkByTitle(String title)
+	{
+		Artwork result=null;
+		List<Artwork> found=findAllArtworks().stream()
+								.filter(a -> a.getName().equals(title))
+								.collect(Collectors.toList());
+		if(!found.isEmpty())
+			result=found.get(0);
+		return result;
+	}
+	
+	public List<String> getUserNames(){
+		return userRepository.getUseNames();
+	}
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((userRepository == null) ? 0 : userRepository.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FavouritesRepository other = (FavouritesRepository) obj;
+		if (userRepository == null) {
+			if (other.userRepository != null)
+				return false;
+		} else if (!userRepository.equals(other.userRepository))
+			return false;
+		return true;
+	}
+		
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4194416846903351018L;
+
+	
 	
 }

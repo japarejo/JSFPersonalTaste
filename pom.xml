@@ -19,6 +19,7 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jsf2.version>2.2.10	</jsf2.version>
+        <jsf2.version>2.2.20</jsf2.version>
     </properties>
     
     <dependencies>
@@ -99,6 +100,12 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>     
+		<!-- Primefaces -->       
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>10.0.0</version>
+		</dependency>  
     </dependencies>
 
     <build>

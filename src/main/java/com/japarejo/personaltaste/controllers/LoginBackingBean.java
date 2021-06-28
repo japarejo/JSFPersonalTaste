@@ -1,5 +1,7 @@
 package com.japarejo.personaltaste.controllers;
 
+import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -86,6 +88,54 @@ public class LoginBackingBean {
 	private void clear() {
 		formPassword="";
 		formUserName="";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((currentUser == null) ? 0 : currentUser.hashCode());
+		result = prime * result + ((formPassword == null) ? 0 : formPassword.hashCode());
+		result = prime * result + ((formUserName == null) ? 0 : formUserName.hashCode());
+		result = prime * result + ((userRepository == null) ? 0 : userRepository.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LoginBackingBean other = (LoginBackingBean) obj;
+		if (currentUser == null) {
+			if (other.currentUser != null)
+				return false;
+		} else if (!currentUser.equals(other.currentUser))
+			return false;
+		if (formPassword == null) {
+			if (other.formPassword != null)
+				return false;
+		} else if (!formPassword.equals(other.formPassword))
+			return false;
+		if (formUserName == null) {
+			if (other.formUserName != null)
+				return false;
+		} else if (!formUserName.equals(other.formUserName))
+			return false;
+		if (userRepository == null) {
+			if (other.userRepository != null)
+				return false;
+		} else if (!userRepository.equals(other.userRepository))
+			return false;
+		return true;
 	}	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4806972322119675590L;
 	
 }
