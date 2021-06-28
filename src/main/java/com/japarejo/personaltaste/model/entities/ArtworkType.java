@@ -2,7 +2,13 @@ package com.japarejo.personaltaste.model.entities;
 
 import java.io.Serializable;
 
-public class ArtworkType implements Serializable{
+import javax.persistence.Entity;
+import javax.persistence.Table;
+@Entity
+@Table(name="artistic_cathegories")
+public class ArtworkType extends BaseEntity implements Serializable{
+	
+	
 	String name;
 	
 	public String getName() {
@@ -37,6 +43,7 @@ public class ArtworkType implements Serializable{
 			return false;
 		return true;
 	}
+	
 	
 	
 }

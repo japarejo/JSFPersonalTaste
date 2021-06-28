@@ -23,4 +23,14 @@
         	<phase-listener>org.springframework.web.jsf.DelegatingPhaseListenerMulticaster</phase-listener>
     	</lifecycle>
      </application>
+     <!-- >converter>
+     	<display-name>ArtworkTypeConverter</display-name>
+     	<converter-id>ArtworkTypeConverter</converter-id>
+     	<converter-class>com.japarejo.personaltaste.model.converters.ArtworkTypeConverter</converter-class>
+     </converter -->
+     <validator>
+     	<display-name>passwordStrengthValidator</display-name>
+     	<validator-id>passwordStrengthValidator</validator-id>
+     	<validator-class>com.japarejo.personaltaste.model.validators.PasswordStrengthValidator</validator-class>
+     </validator>
 </faces-config>

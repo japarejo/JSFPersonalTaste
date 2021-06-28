@@ -7,10 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-
 import org.primefaces.model.charts.ChartData;
 import org.primefaces.model.charts.donut.DonutChartDataSet;
 import org.primefaces.model.charts.donut.DonutChartModel;
@@ -20,22 +16,26 @@ import org.primefaces.model.charts.optionconfig.elements.ElementsLine;
 import org.primefaces.model.charts.radar.RadarChartDataSet;
 import org.primefaces.model.charts.radar.RadarChartModel;
 import org.primefaces.model.charts.radar.RadarChartOptions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.japarejo.personaltaste.model.entities.Artwork;
 import com.japarejo.personaltaste.model.entities.ArtworkType;
-import com.japarejo.personaltaste.model.repositories.FavouritesRepository;
+import com.japarejo.personaltaste.services.ArtworkService;
+import com.japarejo.personaltaste.services.UserService;
 
-@ManagedBean(name="StatisticsController")
-@SessionScoped
+@Controller("StatisticsController")
+@SessionScope
 public class StatisticsBackingBean implements Serializable {
 
-	@ManagedProperty(value = "#{LoginController}")
-	LoginBackingBean login;
+	@Autowired
+	UserService userService;
 	
-	@ManagedProperty(value = "#{favouritesRepository}")
-	FavouritesRepository favRepo;
+	@Autowired
+	ArtworkService artworkService;
 
-	public DonutChartModel donutModel() {
+	public DonutChartModel getDonutModel() {
 		
 		Map<String, Number> rawdata = computeCurrentUserData();
 		List<String> types=new ArrayList<>(rawdata.keySet());
@@ -67,7 +67,7 @@ public class StatisticsBackingBean implements Serializable {
 		RadarChartModel radarModel = new RadarChartModel();
         ChartData data = new ChartData();
 
-        List<ArtworkType> types=favRepo.findAllArtworkTypes();
+        List<ArtworkType> types=new ArrayList<>(artworkService.getAllArtworkTypes());
         Map<String,Map<String,Number>> usersData=createUsersData();
         List<String> users=new ArrayList<String>(usersData.keySet());
         RadarChartDataSet radarDataSet;
@@ -108,7 +108,7 @@ public class StatisticsBackingBean implements Serializable {
 	}
 
 	private Map<String, Map<String, Number>> createUsersData() {
-		List<String> users=favRepo.getUserNames();
+		List<String> users=userService.getUserNames();
 		Map<String, Map<String, Number>> result=new HashMap<String, Map<String,Number>>();
 		for(String username:users)
 			result.put(username,computeUserData(username));
@@ -124,11 +124,11 @@ public class StatisticsBackingBean implements Serializable {
 	}
 
 	private Map<String, Number> computeCurrentUserData() {
-		return computeUserData(login.getCurrentUser().getUsername());
+		return computeUserData(userService.getCurrentUser().getUsername());
 	}
 
 	private Map<String, Number> computeUserData(String username) {
-		Map<ArtworkType, List<Artwork>> rawdata = favRepo.getFavoritos(username).stream()
+		Map<ArtworkType, List<Artwork>> rawdata = artworkService.getFavoritos(username).stream()
 				.collect(Collectors.groupingBy(artwork -> artwork.getType()));
 		Map<String, Number> data = new HashMap<>();
 		for (ArtworkType type : rawdata.keySet()) {
@@ -141,8 +141,6 @@ public class StatisticsBackingBean implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((favRepo == null) ? 0 : favRepo.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		return result;
 	}
 
@@ -153,38 +151,12 @@ public class StatisticsBackingBean implements Serializable {
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
-			return false;
-		StatisticsBackingBean other = (StatisticsBackingBean) obj;
-		if (favRepo == null) {
-			if (other.favRepo != null)
-				return false;
-		} else if (!favRepo.equals(other.favRepo))
-			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
+			return false;				
 		return true;
 	}
 
 
-
-	public LoginBackingBean getLogin() {
-		return login;
-	}
-
-	public void setLogin(LoginBackingBean login) {
-		this.login = login;
-	}
-
-	public FavouritesRepository getFavRepo() {
-		return favRepo;
-	}
-
-	public void setFavRepo(FavouritesRepository favRepo) {
-		this.favRepo = favRepo;
-	}
+	
 
 	/**
 	 * 

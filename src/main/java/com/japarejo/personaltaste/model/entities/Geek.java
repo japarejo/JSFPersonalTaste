@@ -1,36 +1,52 @@
 package com.japarejo.personaltaste.model.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="geeks")
 public class Geek extends BaseEntity implements Serializable{
 	
 	private static final long serialVersionUID = 5088612991452040618L;
 	
-	private String username;
-	private String password;
+	@OneToOne
+	private User user;
+	
 	private String email;
 	
+	@ManyToMany(fetch = FetchType.EAGER)
 	Set<Artwork> favoritos;
 	
 	public Geek() {
+		Authorities role=new Authorities();
+		role.authority="Geek";
+		this.user=new User();		
+		this.user.getAuthorities().add(role);
 		this.favoritos=new HashSet();
+	}	
+	
+	public User getUser() {
+		return user;
 	}
 	
 	public String getUsername() {
-		return username;
+		return user.username;
 	}
 	public void setUsername(String username) {
-		this.username = username;
+		this.user.setUsername(username);
 	}
 	public String getPassword() {
-		return password;
+		return this.user.getPassword();
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		this.user.setPassword(password);
 	}
 	
 	public String getEmail() {
@@ -54,8 +70,7 @@ public class Geek extends BaseEntity implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());		
 		return result;
 	}
 	
@@ -73,16 +88,11 @@ public class Geek extends BaseEntity implements Serializable{
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (password == null) {
-			if (other.password != null)
+		if (user == null) {
+			if (other.user != null)
 				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
+		} else if (!user.equals(other.user))
+			return false;		
 		return true;
 	}
 	

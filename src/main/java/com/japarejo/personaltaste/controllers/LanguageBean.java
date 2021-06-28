@@ -14,9 +14,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 @Controller(value="language")
 @SessionScope
-public class LanguageBean implements Serializable{
-	
-	private static final long serialVersionUID = 1L;	
+public class LanguageBean implements Serializable{	
 	
 	private Locale locale;
 	

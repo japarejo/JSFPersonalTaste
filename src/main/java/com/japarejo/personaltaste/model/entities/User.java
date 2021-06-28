@@ -1,5 +1,6 @@
 package com.japarejo.personaltaste.model.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,6 +22,10 @@ public class User{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<Authorities> authorities;
 
+	public User(){
+		authorities=new HashSet<Authorities>();
+	}
+	
 	public String getUsername() {
 		return username;
 	}

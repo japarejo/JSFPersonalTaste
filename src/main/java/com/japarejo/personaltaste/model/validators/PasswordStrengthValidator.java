@@ -7,6 +7,9 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+import org.springframework.stereotype.Component;
+
+@Component("passwordStrengthValidator")
 @FacesValidator("passwordStrengthValidator")
 public class PasswordStrengthValidator implements Validator{
 

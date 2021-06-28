@@ -15,10 +15,10 @@ import com.japarejo.personaltaste.model.entities.ArtworkType;
 import com.japarejo.personaltaste.model.entities.Geek;
 
 
-@Service
-@ApplicationScope
+//@Service
+//@ApplicationScope
 public class UserRepository implements Serializable {
-	Map<String,Geek> users; 
+	Map<String,Geek> users;
 
 	public UserRepository(){
 		users=new HashMap<String,Geek>();

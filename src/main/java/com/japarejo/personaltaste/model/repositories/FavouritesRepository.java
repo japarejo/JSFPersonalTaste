@@ -13,8 +13,8 @@ import org.springframework.web.context.annotation.ApplicationScope;
 import com.japarejo.personaltaste.model.entities.Artwork;
 import com.japarejo.personaltaste.model.entities.ArtworkType;
 
-@Service
-@ApplicationScope
+//@Service
+//@ApplicationScope
 public class FavouritesRepository {
 	
 	@Autowired

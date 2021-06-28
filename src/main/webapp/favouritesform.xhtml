@@ -32,7 +32,7 @@
 				<p:autoComplete id="type" name="type"
 					value="#{FavouritesController.currentArtwork.type}" required="true"
 					completeMethod="#{FavouritesController.completeArtworkTypeName}" >
-					<f:converter converterId="ArtworkTypeConverter"></f:converter>					
+					<f:converter binding="#{ArtworkTypeConverter}"></f:converter>					
 				</p:autoComplete>
 				<h:message for="type" style="color:red;" />
 

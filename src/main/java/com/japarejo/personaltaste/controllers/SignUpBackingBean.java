@@ -1,7 +1,5 @@
 package com.japarejo.personaltaste.controllers;
 
-import java.io.Serializable;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -11,21 +9,22 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import com.japarejo.personaltaste.model.entities.Geek;
 import com.japarejo.personaltaste.model.repositories.UserRepository;
+import com.japarejo.personaltaste.services.UserService;
 
-@SessionScoped
+
 @Controller("SignUpController")
 @SessionScope
 public class SignUpBackingBean {
 	String formUsername;
 	String formEmail;
 	String formPassword;
-	String formPasswordRepeat;
-
-	@Autowired
-	UserRepository userRepository;
+	String formPasswordRepeat;	
 
 	@Autowired
 	LoginBackingBean loginBackingBean;
+	
+	@Autowired
+	UserService usersService;
 
 	public String getFormUsername() {
 		return formUsername;
@@ -51,13 +50,6 @@ public class SignUpBackingBean {
 		this.formPassword = formPassword;
 	}
 
-	public UserRepository getUserRepository() {
-		return userRepository;
-	}
-
-	public void setUserRepository(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
 
 	public void setLoginBackingBean(LoginBackingBean loginBackingBean) {
 		this.loginBackingBean = loginBackingBean;
@@ -79,12 +71,12 @@ public class SignUpBackingBean {
 		String result = "index";
 		if (formPassword.equals(formPasswordRepeat)) {
 
-			if (!userRepository.existsUser(formUsername)) {
+			if (!usersService.existsUser(formUsername)) {
 				Geek user = new Geek();
 				user.setUsername(formUsername);
 				user.setPassword(formPassword);
 				user.setEmail(formEmail);
-				userRepository.addUser(user);
+				usersService.saveUser(user);
 				loginBackingBean.setCurrentUser(user);
 				clear();
 				/*
@@ -121,7 +113,6 @@ public class SignUpBackingBean {
 		result = prime * result + ((formPasswordRepeat == null) ? 0 : formPasswordRepeat.hashCode());
 		result = prime * result + ((formUsername == null) ? 0 : formUsername.hashCode());
 		result = prime * result + ((loginBackingBean == null) ? 0 : loginBackingBean.hashCode());
-		result = prime * result + ((userRepository == null) ? 0 : userRepository.hashCode());
 		return result;
 	}
 
@@ -158,12 +149,7 @@ public class SignUpBackingBean {
 			if (other.loginBackingBean != null)
 				return false;
 		} else if (!loginBackingBean.equals(other.loginBackingBean))
-			return false;
-		if (userRepository == null) {
-			if (other.userRepository != null)
-				return false;
-		} else if (!userRepository.equals(other.userRepository))
-			return false;
+			return false;		
 		return true;
 	}
 	

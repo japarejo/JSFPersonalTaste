@@ -12,7 +12,7 @@
 <body>
 	<ui:composition template="templates/generaltemplate.xhtml">
 		<ui:define name="pageContent">
-			<p:donutChart model="#{StatisticsController.donutModel()}" style="width: 100%; height: 500px;"/>
+			<p:donutChart model="#{StatisticsController.donutModel}" style="width: 100%; height: 500px;"/>
 			<h:commandButton onclick="PF('comparison').show()" value="Compare me with other users!" type="button"></h:commandButton>
 			<h:commandButton action="favourites" value="My Favourite Artworks"></h:commandButton>
 			<p:dialog id="comparison" widgetVar="comparison" showEffect="fade" hideEffect="slide" modal="true" minHeight="900" minWidth="900" width="auto" height="auto" appendTo="@form">

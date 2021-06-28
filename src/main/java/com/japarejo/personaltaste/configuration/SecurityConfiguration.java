@@ -25,10 +25,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.anyRequest().permitAll()
 				.and()
 				 	.formLogin()
-				 	/*.loginPage("/login")*/
+				 	.loginPage("/login")
 				 	.failureUrl("/login-error")
 				.and()
 					.logout()
+					.logoutUrl("/index.xhtml")
 						.logoutSuccessUrl("/"); 
                 // Configuración para que funcione la consola de administración 
                 // de la BD H2 (deshabilitar las cabeceras de protección contra
