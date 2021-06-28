@@ -11,8 +11,9 @@
 <body>
 	<ui:composition>
 		<header>
-			<h:outputText id="userName" value="#{LoginController.currentUser.username}" rendered="#{LoginController.currentUser!=null}"></h:outputText>
-		<h:panelGrid id="loginLinks" columns="5" style="float:right;">			
+			
+		<h:panelGrid id="loginLinks" columns="6" style="float:right;">
+			<h:commandLink id="userName" value="#{LoginController.currentUser.username}" rendered="#{LoginController.currentUser!=null}" action="profile"/>			
 			<h:commandLink action="login" rendered="#{LoginController.currentUser==null}">#{txt.login}</h:commandLink>			
 			<h:commandLink action="#{LoginController.doLogout}" rendered="#{LoginController.currentUser!=null}">#{txt.logout}</h:commandLink>
 			<h:commandLink action="signup">#{txt.signup}</h:commandLink>
