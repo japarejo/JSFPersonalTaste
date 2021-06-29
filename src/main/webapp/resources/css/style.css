@@ -52,8 +52,8 @@ td{
 }
 
 th {
-	background-color: rgb(43,39,91);
-	color: rgb(252,246,87);
+	background-color: rgb(43,39,91) !important;
+	color: rgb(252,246,87) !important;
 	font-weight:bolder;
 	border-width: 1px;
 	border-style: collapse;
@@ -65,8 +65,47 @@ th {
   	margin: auto;
 }
 
-input {
-	background-color: rgb(187,105,255);
+.ui-widget-content{
+	background-color: rgb(252,246,87) !important;
+}
+
+.ui-widget-header {
+	background-color: rgb(43,39,91) !important;
+	color: rgb(87,155,252) !important;	
+}
+
+.ui-paginator {
+	color: rgb(252,246,87) !important;
+}
+body .ui-paginator  {
+	color: rgb(252,246,87) !important;
+}
+body .ui-paginator .ui-paginator-current {
+	color: rgb(252,246,87) !important;
+}
+body .ui-paginator .ui-paginator-first
+{
+	color: rgb(252,246,87) !important;
+}
+body .ui-paginator .ui-paginator-prev
+{	color: rgb(252,246,87) !important;
+}
+
+body .ui-paginator .ui-paginator-next{
+	color: rgb(252,246,87) !important;
+}
+body .ui-paginator .ui-paginator-last{
+	color: rgb(252,246,87) !important;
+}
+
+body .ui-paginator .ui-paginator-pages .ui-paginator-page {
+	background-color: rgb(187,105,255) !important;
+	color: rgb(252,246,87) !important;
+}
+
+body .ui-inputfield, input {
+	color: rgb(252,246,87) !important;
+	background-color: rgb(187,105,255)!important;
 }
 
 select {

@@ -10,10 +10,9 @@
 </head>
 <body>
 	<ui:composition>
-		<header>
-			
+		<header>			
 		<h:panelGrid id="loginLinks" columns="6" style="float:right;">
-			<h:commandLink id="userName" value="#{LoginController.currentUser.username}" rendered="#{LoginController.currentUser!=null}" action="profile"/>			
+			<h:commandLink id="userName" value="#{LoginController.currentUser.username}" rendered="#{LoginController.currentUser!=null}" action="profile" immediate="true"/>			
 			<h:commandLink action="login.xhtml" rendered="#{LoginController.currentUser==null}" immediate="true">#{txt.login}</h:commandLink>			
 			<h:commandLink action="#{LoginController.doLogout}" rendered="#{LoginController.currentUser!=null}" immediate="true">#{txt.logout}</h:commandLink>
 			<h:commandLink action="signup" immediate="true"	>#{txt.signup}</h:commandLink>

@@ -64,8 +64,9 @@
 						</p:column>
 						<p:column style="width:6rem">
                 			<p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
-                			<p:commandButton action="#{FavouritesController.delete(work.name)}" update="@form" class="pi ui-icon pi-trash">                				
-                			</p:commandButton>
+                			<p:commandLink action="#{FavouritesController.delete(work.name)}" update="@form">                				
+                				<i class="pi ui-icon pi-trash"></i>
+                			</p:commandLink>
             			</p:column>	
 					</p:dataTable>
 			</p:panel>
@@ -76,6 +77,5 @@
 				value="You must be logged in to show your favourites!" />
 		</ui:define>
 	</ui:composition>
-
 </body>
 </html>
