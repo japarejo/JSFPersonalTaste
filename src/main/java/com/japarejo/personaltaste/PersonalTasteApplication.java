@@ -1,5 +1,7 @@
 package com.japarejo.personaltaste;
 
+import java.util.Arrays;
+
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 
@@ -13,30 +15,23 @@ import org.springframework.web.context.ServletContextAware;
 import com.sun.faces.config.ConfigureListener;
 
 @SpringBootApplication
-public class PersonalTasteApplication implements ServletContextAware {
+public class PersonalTasteApplication {//implements ServletContextAware {
 	public static void main(String[] args) {
 		SpringApplication.run(PersonalTasteApplication.class, args);
-	}
-	
-	@Bean
-	public ServletRegistrationBean servletRegistrationBean() {
-	    ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(
-	            new FacesServlet(), "*.xhtml");
-	    servletRegistrationBean.setLoadOnStartup(1);
-	    return servletRegistrationBean;
-	}
-	
-	@Bean
-    public ServletListenerRegistrationBean<ConfigureListener> jsfConfigureListener() {
-        return new ServletListenerRegistrationBean<ConfigureListener>(
-            new ConfigureListener());
-    }
-	
-	@Override
-    public void setServletContext(ServletContext servletContext) {
-        servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());           
-    }
+	}		
 
-	
+  @Bean
+  public ServletRegistrationBean jsfServletRegistration (ServletContext servletContext) {
+      //spring boot only works if this is set
+      servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
+      //FacesServlet registration
+      ServletRegistrationBean srb = new ServletRegistrationBean();
+      srb.setServlet(new FacesServlet());
+      srb.setUrlMappings(Arrays.asList("*.xhtml"));
+      srb.setLoadOnStartup(1);
+      return srb;
+  }
+
+
 	
 }
