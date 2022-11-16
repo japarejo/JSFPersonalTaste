@@ -17,8 +17,7 @@
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jsf2.version>2.2.10	</jsf2.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>        
         <jsf2.version>2.2.20</jsf2.version>
     </properties>
     
