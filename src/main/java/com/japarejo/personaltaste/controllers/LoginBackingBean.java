@@ -83,7 +83,7 @@ public class LoginBackingBean {
 	
 	public String doLogout() {
 		this.currentUser=null;
-		return "index";
+		return "login";
 	}
 	
 	private void clear() {
